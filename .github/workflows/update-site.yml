@@ -32,6 +32,7 @@ jobs:
         run: python scripts/build_site.py
 
       - name: Post new videos to X
+        continue-on-error: true
         env:
           X_API_KEY: ${{ secrets.X_API_KEY }}
           X_API_SECRET: ${{ secrets.X_API_SECRET }}

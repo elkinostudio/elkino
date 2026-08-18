@@ -35,7 +35,8 @@ def main() -> None:
 
     html = template.render(
         site=config["site"],
-        videos=content["videos"],
+        profile=config.get("profile", {}),
+        channels=content["channels"],
         note_posts=content["note_posts"],
     )
 

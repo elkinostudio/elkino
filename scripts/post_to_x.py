@@ -65,8 +65,10 @@ def main() -> None:
     with open(CONTENT_PATH, encoding="utf-8") as f:
         content = json.load(f)
 
+    all_videos = [v for channel in content["channels"] for v in channel["videos"]]
+
     posted_ids = load_state()
-    new_videos = [v for v in content["videos"] if v["video_id"] not in posted_ids]
+    new_videos = [v for v in all_videos if v["video_id"] not in posted_ids]
 
     if not new_videos:
         print("新着動画はありません。投稿はスキップします。")

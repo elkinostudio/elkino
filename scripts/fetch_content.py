@@ -109,18 +109,18 @@ def main() -> None:
     if not api_key:
         sys.exit("環境変数 YOUTUBE_API_KEY が設定されていません。")
 
-    all_videos = []
+    channels = []
     for ch in config["youtube"]["channels"]:
         try:
             videos = get_latest_videos(
                 ch["name"], ch["channel_id"], api_key, config["youtube"]["max_videos_per_channel"]
             )
-            all_videos.extend(videos)
+            videos.sort(key=lambda v: v["published_at"], reverse=True)
+            channels.append({"name": ch["name"], "videos": videos})
             print(f"[OK] {ch['name']}: {len(videos)}件取得")
         except Exception as e:
+            channels.append({"name": ch["name"], "videos": []})
             print(f"[WARN] {ch['name']} の取得に失敗: {e}", file=sys.stderr)
-
-    all_videos.sort(key=lambda v: v["published_at"], reverse=True)
 
     note_posts = []
     try:
@@ -131,7 +131,7 @@ def main() -> None:
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-        json.dump({"videos": all_videos, "note_posts": note_posts}, f, ensure_ascii=False, indent=2)
+        json.dump({"channels": channels, "note_posts": note_posts}, f, ensure_ascii=False, indent=2)
 
     print(f"content.json を書き出しました: {OUTPUT_PATH}")
 

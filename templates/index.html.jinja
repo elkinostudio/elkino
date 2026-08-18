@@ -22,17 +22,31 @@
 
 <main>
 
-  <section class="section" id="videos">
-    <h2 class="section-title"><span class="jp">映像</span><span class="en">Films</span></h2>
+  {% if profile %}
+  <section class="section" id="about">
+    <h2 class="section-title"><span class="jp">プロフィール</span><span class="en">About</span></h2>
+    <p class="profile-bio">{{ profile.bio }}</p>
+    {% if profile.links %}
+    <ul class="profile-links">
+      {% for link in profile.links %}
+      <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {% for channel in channels %}
+  <section class="section" id="videos-{{ loop.index }}">
+    <h2 class="section-title"><span class="jp">{{ channel.name }}</span><span class="en">Films</span></h2>
     <div class="grid">
-      {% for v in videos %}
+      {% for v in channel.videos %}
       <a class="card reveal" href="{{ v.url }}" target="_blank" rel="noopener">
         <div class="thumb-wrap">
           {% if v.thumbnail %}
           <img class="thumb" src="{{ v.thumbnail }}" alt="{{ v.title }}" loading="lazy">
           {% endif %}
         </div>
-        <p class="card-channel">{{ v.channel }}</p>
         <p class="card-title">{{ v.title }}</p>
       </a>
       {% else %}
@@ -40,6 +54,7 @@
       {% endfor %}
     </div>
   </section>
+  {% endfor %}
 
   <section class="section" id="notes">
     <h2 class="section-title"><span class="jp">note</span><span class="en">Writing</span></h2>
@@ -60,7 +75,7 @@
 </main>
 
 <footer class="footer">
-  <p>&copy; mono Japan</p>
+  <p>&copy; {{ site.title }}</p>
 </footer>
 
 <script src="static/script.js"></script>
