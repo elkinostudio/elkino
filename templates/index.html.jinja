@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ site.title }}</title>
+<meta name="description" content="{{ site.description }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Cormorant+Garamond:ital@0;1&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="hero">
+  <p class="hero-eyebrow">{{ site.title }}</p>
+  <h1 class="hero-title">見つめれば、<br>見えてくるもの。</h1>
+  <p class="hero-sub">{{ site.description }}</p>
+</header>
+
+<main>
+
+  <section class="section" id="videos">
+    <h2 class="section-title"><span class="jp">映像</span><span class="en">Films</span></h2>
+    <div class="grid">
+      {% for v in videos %}
+      <a class="card reveal" href="{{ v.url }}" target="_blank" rel="noopener">
+        <div class="thumb-wrap">
+          {% if v.thumbnail %}
+          <img class="thumb" src="{{ v.thumbnail }}" alt="{{ v.title }}" loading="lazy">
+          {% endif %}
+        </div>
+        <p class="card-channel">{{ v.channel }}</p>
+        <p class="card-title">{{ v.title }}</p>
+      </a>
+      {% else %}
+      <p class="empty">まだ動画がありません。</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section" id="notes">
+    <h2 class="section-title"><span class="jp">note</span><span class="en">Writing</span></h2>
+    <ul class="note-list">
+      {% for n in note_posts %}
+      <li class="reveal">
+        <a href="{{ n.url }}" target="_blank" rel="noopener">
+          <span class="note-title">{{ n.title }}</span>
+          <span class="note-date">{{ n.published_at }}</span>
+        </a>
+      </li>
+      {% else %}
+      <p class="empty">まだ記事がありません。</p>
+      {% endfor %}
+    </ul>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; mono Japan</p>
+</footer>
+
+<script src="static/script.js"></script>
+</body>
+</html>

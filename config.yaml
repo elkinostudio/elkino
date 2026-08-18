@@ -1,0 +1,19 @@
+# このファイルを config.yaml という名前でコピーして、実際の値を入れてください。
+# config.yaml は .gitignore で除外されるので、APIキーなど秘密の値は入れないこと。
+# （秘密の値は GitHub Actions の Secrets に入れます）
+
+youtube:
+  channels:
+    - name: "mono Japan"
+      channel_id: "UCyda1jdhqOw7OdaSrE4Bz-A"   # チャンネルのURL/概要欄から取得
+    - name: "勝手にご当地ソング"
+      channel_id: "UCcj-9B4_o7xK2rLj5TlvnbQ"
+  max_videos_per_channel: 6
+
+note:
+  username: "genei_shobo"   # note.com/xxxxx の xxxxx 部分
+  max_posts: 6
+
+site:
+  title: "elkino studio"
+  description: "elkino studio のポートフォリオ — mono Japanをはじめとする各プロジェクトの映像・執筆をまとめて公開"
