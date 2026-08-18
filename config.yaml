@@ -6,6 +6,8 @@ youtube:
   channels:
     - name: "mono Japan"
       channel_id: "UCyda1jdhqOw7OdaSrE4Bz-A"   # チャンネルのURL/概要欄から取得
+    - name: "mono Japan music"
+      channel_id: "UC52Tep13ydtSXckGyH_93KA"
     - name: "勝手にご当地ソング"
       channel_id: "UCcj-9B4_o7xK2rLj5TlvnbQ"
   max_videos_per_channel: 6
@@ -17,3 +19,14 @@ note:
 site:
   title: "elkino studio"
   description: "elkino studio のポートフォリオ — mono Japanをはじめとする各プロジェクトの映像・執筆をまとめて公開"
+profile:
+  bio: "映像と音楽、そして言葉を通して、日本の美意識を静かに見つめるスタジオです。ドキュメンタリーチャンネル「mono Japan」、その音楽作品を届ける「mono Japan music」、各地の風景を歌にする「勝手にご当地ソング」、そして文章を綴るnote「幻影書房」——形は違えど、同じまなざしで作られています。"
+  links:
+    - label: "mono Japan"
+      url: "https://www.youtube.com/@mono_Japan"
+    - label: "mono Japan music"
+      url: "https://www.youtube.com/@monoJapanMusic"
+    - label: "勝手にご当地ソング"
+      url: "https://www.youtube.com/@katteni_song"
+    - label: "note 幻影書房"
+      url: "https://note.com/genei_shobo"
