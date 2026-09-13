@@ -5,79 +5,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ site.title }}</title>
 <meta name="description" content="{{ site.description }}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-<div class="grain"></div>
-
 <header class="site-header">
-  <a class="site-mark" href="#top">elkino Studio</a>
+  <a class="site-mark" href="#top">elkino studio</a>
   <nav class="site-nav" aria-label="Primary navigation">
-    <a href="#worlds">Worlds</a>
+    <a href="#mono-japan">Films</a>
+    <a href="#music">Music</a>
+    <a href="#stories">Stories</a>
+    <a href="#web-lab">Web / Lab</a>
     <a href="#about">About</a>
-    <a href="#mono-japan">Latest film <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
 
 <main id="top">
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__copy">
-      <p class="eyebrow">Independent creative practice · Japan</p>
-      <h1 class="hero__title" id="hero-title">films, music, stories,<br>and other worlds.</h1>
+    <div class="hero__identity">
+      <h1 class="hero__title" id="hero-title"><span>elkino</span><span>studio</span></h1>
+      <p class="hero__eyebrow">Independent creative practice · Japan</p>
     </div>
-    <div class="hero__orbit" aria-hidden="true">
-      <span class="orbit orbit--outer"></span>
-      <span class="orbit orbit--middle"></span>
-      <span class="orbit orbit--inner"></span>
-      <span class="orbit__point"></span>
-    </div>
-    <a class="hero__link" href="#threshold">
-      <span>Enter the worlds</span><span aria-hidden="true">↓</span>
+    <p class="hero__description">films, music, stories,<br>and other worlds.</p>
+    <a class="hero__enter" href="#threshold">Enter</a>
+    <div class="hero__circle" aria-hidden="true"></div>
+  </section>
+
+  <section class="threshold" id="threshold" aria-label="Threshold">
+    <p>Not a collection of works.<br>A passage between worlds.</p>
+  </section>
+
+  <section class="mono-japan" id="mono-japan" aria-labelledby="mono-japan-title">
+    <div class="section-meta"><span>01</span><span>Films / Documentary</span></div>
+
+    {% set latest = mono_japan_videos|first %}
+    {% if latest %}
+    <a class="latest-visual" href="{{ latest.url }}" target="_blank" rel="noopener" aria-label="Watch {{ latest.title }} on YouTube">
+      {% if latest.thumbnail %}<img src="{{ latest.thumbnail }}" alt="">{% endif %}
     </a>
-  </section>
+    {% else %}
+    <div class="latest-visual latest-visual--empty" aria-hidden="true"></div>
+    {% endif %}
 
-  <section class="threshold" id="threshold">
-    <p class="threshold__label">Threshold</p>
-    <p class="threshold__statement reveal">Not a collection of works.<br>A passage between worlds.</p>
-  </section>
+    <h2 class="mono-japan__title" id="mono-japan-title">mono Japan</h2>
 
-  <section class="world" id="worlds" aria-labelledby="mono-japan-title">
-    <div class="world__meta">
-      <span>01</span>
-      <span>Films / Documentary</span>
+    <div class="mono-japan__copy">
+      <p class="mono-japan__statement">To look at Japan is to look at culture itself.</p>
+      <p class="mono-japan__description">Films about language, sound, design, custom and philosophy —<br>quiet observations made for viewers beyond Japan.</p>
+      <a class="text-link" href="https://www.youtube.com/@mono_Japan" target="_blank" rel="noopener">Enter mono Japan <span aria-hidden="true">↗</span></a>
     </div>
 
-    <div class="world__intro" id="mono-japan">
-      <h2 class="world__title" id="mono-japan-title">mono Japan</h2>
-      <p class="world__statement">To look at Japan is to look at culture itself.</p>
-    </div>
-
-    <div class="films">
-      {% for video in mono_japan_videos %}
-      <article class="film reveal{% if loop.first %} film--featured{% endif %}">
-        <a class="film__link" href="{{ video.url }}" target="_blank" rel="noopener">
-          <figure class="film__visual">
-            {% if video.thumbnail %}
-            <img src="{{ video.thumbnail }}" alt=""{% if not loop.first %} loading="lazy"{% endif %}>
-            {% endif %}
-          </figure>
-          <div class="film__details">
-            <p class="film__number">{{ "%02d"|format(loop.index) }}</p>
-            <h3 class="film__title">{{ video.title }}</h3>
-            <span class="film__arrow" aria-hidden="true">↗</span>
-          </div>
-        </a>
-      </article>
-      {% else %}
-      <p class="empty">Films will appear here when the next update is available.</p>
-      {% endfor %}
-    </div>
+    {% if latest %}<p class="latest-title">Latest film · {{ latest.title }}</p>{% endif %}
   </section>
 </main>
-
-<script src="static/script.js"></script>
 </body>
 </html>
