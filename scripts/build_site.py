@@ -33,11 +33,14 @@ def main() -> None:
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=True)
     template = env.get_template("index.html.jinja")
 
+    channels_by_name = {
+        channel["name"]: channel.get("videos", [])
+        for channel in content.get("channels", [])
+    }
+
     html = template.render(
         site=config["site"],
-        profile=config.get("profile", {}),
-        channels=content["channels"],
-        note_posts=content["note_posts"],
+        mono_japan_videos=channels_by_name.get("mono Japan", []),
     )
 
     PUBLIC_DIR.mkdir(exist_ok=True)
