@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,76 +7,76 @@
 <meta name="description" content="{{ site.description }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Cormorant+Garamond:ital@0;1&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-
 <div class="grain"></div>
 
-<header class="hero">
-  <p class="hero-eyebrow">{{ site.title }}</p>
-  <h1 class="hero-title">見つめれば、<br>見えてくるもの。</h1>
-  <p class="hero-sub">{{ site.description }}</p>
+<header class="site-header">
+  <a class="site-mark" href="#top">elkino Studio</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href="#worlds">Worlds</a>
+    <a href="#about">About</a>
+    <a href="#mono-japan">Latest film <span aria-hidden="true">↗</span></a>
+  </nav>
 </header>
 
-<main>
-
-  {% if profile %}
-  <section class="section" id="about">
-    <h2 class="section-title"><span class="jp">プロフィール</span><span class="en">About</span></h2>
-    <p class="profile-bio">{{ profile.bio }}</p>
-    {% if profile.links %}
-    <ul class="profile-links">
-      {% for link in profile.links %}
-      <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a></li>
-      {% endfor %}
-    </ul>
-    {% endif %}
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__copy">
+      <p class="eyebrow">Independent creative practice · Japan</p>
+      <h1 class="hero__title" id="hero-title">films, music, stories,<br>and other worlds.</h1>
+    </div>
+    <div class="hero__orbit" aria-hidden="true">
+      <span class="orbit orbit--outer"></span>
+      <span class="orbit orbit--middle"></span>
+      <span class="orbit orbit--inner"></span>
+      <span class="orbit__point"></span>
+    </div>
+    <a class="hero__link" href="#threshold">
+      <span>Enter the worlds</span><span aria-hidden="true">↓</span>
+    </a>
   </section>
-  {% endif %}
 
-  {% for channel in channels %}
-  <section class="section" id="videos-{{ loop.index }}">
-    <h2 class="section-title"><span class="jp">{{ channel.name }}</span><span class="en">Films</span></h2>
-    <div class="grid">
-      {% for v in channel.videos %}
-      <a class="card reveal" href="{{ v.url }}" target="_blank" rel="noopener">
-        <div class="thumb-wrap">
-          {% if v.thumbnail %}
-          <img class="thumb" src="{{ v.thumbnail }}" alt="{{ v.title }}" loading="lazy">
-          {% endif %}
-        </div>
-        <p class="card-title">{{ v.title }}</p>
-      </a>
+  <section class="threshold" id="threshold">
+    <p class="threshold__label">Threshold</p>
+    <p class="threshold__statement reveal">Not a collection of works.<br>A passage between worlds.</p>
+  </section>
+
+  <section class="world" id="worlds" aria-labelledby="mono-japan-title">
+    <div class="world__meta">
+      <span>01</span>
+      <span>Films / Documentary</span>
+    </div>
+
+    <div class="world__intro" id="mono-japan">
+      <h2 class="world__title" id="mono-japan-title">mono Japan</h2>
+      <p class="world__statement">To look at Japan is to look at culture itself.</p>
+    </div>
+
+    <div class="films">
+      {% for video in mono_japan_videos %}
+      <article class="film reveal{% if loop.first %} film--featured{% endif %}">
+        <a class="film__link" href="{{ video.url }}" target="_blank" rel="noopener">
+          <figure class="film__visual">
+            {% if video.thumbnail %}
+            <img src="{{ video.thumbnail }}" alt=""{% if not loop.first %} loading="lazy"{% endif %}>
+            {% endif %}
+          </figure>
+          <div class="film__details">
+            <p class="film__number">{{ "%02d"|format(loop.index) }}</p>
+            <h3 class="film__title">{{ video.title }}</h3>
+            <span class="film__arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+      </article>
       {% else %}
-      <p class="empty">まだ動画がありません。</p>
+      <p class="empty">Films will appear here when the next update is available.</p>
       {% endfor %}
     </div>
   </section>
-  {% endfor %}
-
-  <section class="section" id="notes">
-    <h2 class="section-title"><span class="jp">note</span><span class="en">Writing</span></h2>
-    <ul class="note-list">
-      {% for n in note_posts %}
-      <li class="reveal">
-        <a href="{{ n.url }}" target="_blank" rel="noopener">
-          <span class="note-title">{{ n.title }}</span>
-          <span class="note-date">{{ n.published_at }}</span>
-        </a>
-      </li>
-      {% else %}
-      <p class="empty">まだ記事がありません。</p>
-      {% endfor %}
-    </ul>
-  </section>
-
 </main>
-
-<footer class="footer">
-  <p>&copy; {{ site.title }}</p>
-</footer>
 
 <script src="static/script.js"></script>
 </body>
