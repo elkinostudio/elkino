@@ -1,0 +1,25 @@
+export const works = [
+  {
+    slug: "komorebi",
+    title: "KOMOREBI — The Light Under the Trees Has a Name",
+    series: "mono Japan",
+    theme: "light",
+    newest: true,
+    image: "komorebi.jpg",
+    alt: "The film’s title over soft shadows and patches of light",
+    video: "https://youtu.be/IUCVcjfBpKg",
+    description: "Sunlight filters through leaves and briefly alters the ground beneath our feet. This film follows the Japanese word komorebi and the fleeting light it names.",
+    related: ["boro"],
+  },
+  {
+    slug: "boro",
+    title: "BORO : The Art of Imperfection and Wabi-Sabi",
+    series: "mono Japan",
+    theme: "craft",
+    image: "boro.jpg",
+    alt: "Thumbnail for the mono Japan film about boro textiles",
+    video: "https://youtu.be/1GQDFnQFMq0",
+    description: "A film about boro, Japanese textiles patched and repaired over years of use, and what the marks of repair reveal about the lives of ordinary objects.",
+    related: ["komorebi"],
+  },
+];
