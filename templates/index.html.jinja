@@ -36,6 +36,23 @@
   </section>
   {% endif %}
 
+  {% if tools %}
+  <section class="section" id="tools">
+    <h2 class="section-title"><span class="jp">つくったもの</span><span class="en">Tools</span></h2>
+    <div class="grid">
+      {% for t in tools %}
+      <a class="card reveal" href="{{ t.url }}" target="_blank" rel="noopener">
+        <div class="thumb-wrap">
+          {% if t.image %}<img class="thumb" src="{{ t.image }}" alt="{{ t.name }}" loading="lazy">{% endif %}
+        </div>
+        <p class="card-title">{{ t.name }}</p>
+        {% if t.description %}<p class="card-desc">{{ t.description }}</p>{% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
   {% for channel in channels %}
   <section class="section" id="videos-{{ loop.index }}">
     <h2 class="section-title"><span class="jp">{{ channel.name }}</span><span class="en">Films</span></h2>

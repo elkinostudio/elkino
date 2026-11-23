@@ -19,6 +19,12 @@ note:
 site:
   title: "elkino studio"
   description: "elkino studio のポートフォリオ — mono Japanをはじめとする各プロジェクトの映像・執筆をまとめて公開"
+tools:
+  - name: "Kamon Maker"
+    url: "https://elkinostudio.github.io/kamon-maker/"
+    image: "static/kamon-maker.jpg"
+    description: "90の文様と6つの枠から、自分だけの家紋をつくれるWebツール（英語）。PNG・SVGで保存できます。"
+
 profile:
   bio: "映像と音楽、そして言葉を通して、日本の美意識を静かに見つめるスタジオです。ドキュメンタリーチャンネル「mono Japan」、その音楽作品を届ける「mono Japan music」、各地の風景を歌にする「勝手にご当地ソング」、そして文章を綴るnote「幻影書房」——形は違えど、同じまなざしで作られています。"
   links:
