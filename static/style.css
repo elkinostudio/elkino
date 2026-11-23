@@ -226,3 +226,10 @@ html, body {
   .thumb, .reveal { transition: none; }
   .reveal { opacity: 1; transform: none; }
 }
+
+.card-desc {
+  margin: 0.4rem 0 0;
+  color: var(--ink-dim);
+  font-size: 0.85rem;
+  font-weight: 300;
+}
